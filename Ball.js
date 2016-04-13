@@ -5,10 +5,8 @@
 	var Ball = function () {
 		var ball = {
 			container: $('.bolinha'),
-			angle: 0,
 			x: 0,
 			y: 0,
-			velocity: 0,
 			setPosition: function (x, y) {
 				this.x = x;
 				this.y = y;
@@ -21,9 +19,9 @@
 			clearBall: function () {
 				this.container.remove();
 			},
-			launch: function () {
-				var velocityX = this.velocity * cos(this.angle);
-				var velocityY = this.velocity * sin(this.angle);
+			launch: function (angle, velocity) {
+				var velocityX = velocity * cos(angle);
+				var velocityY = velocity * sin(angle);
 				var initialX = this.x;
 				var initialY = this.y;
 				var timepast = 0;

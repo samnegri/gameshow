@@ -1,8 +1,13 @@
 (function ($) {
 	var Tank = function () {
 		var Tank = {
-
-			initialize: function () {},
+			angle: 45,
+			initialize: function () {
+				return this;
+			},
+			shoot: function (velocity) {
+				new Ball().launch(this.angle, velocity);
+			}
 		}
 		return Tank.initialize();
 	};
