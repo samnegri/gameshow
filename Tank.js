@@ -5,6 +5,14 @@
 			initialize: function () {
 				return this;
 			},
+			toCannonUp: function () {
+				this.angle++;
+				console.info(this.angle);
+			},
+			toCannonDown: function () {
+				this.angle--;
+				console.info(this.angle);
+			},
 			shoot: function (velocity) {
 				new Ball().launch(this.angle, velocity);
 			}
