@@ -11,11 +11,11 @@
             width: 53,
             height: 67,
             frameNumber: 0,
-            numberOfFrames:6 ,
+            numberOfFrames:5 ,
             
 
 			draw: function (ctx) {
-                var bla = this.spriteX * (this.frameNumber % this.numberOfFrames);
+                var bla = this.spriteWidth * (this.frameNumber % this.numberOfFrames);
                 console.info(bla);
 				ctx.drawImage(image, bla, this.spriteY, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
 			},
