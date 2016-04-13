@@ -1,7 +1,7 @@
 (function ($) {
 	var AnimatedObject = function () {
 		var animatedObject = {
-			spriteImg: image,
+			spriteImg: new Image(),
             spriteX: 0,
             spriteY: 67,
             spriteWidth: 45,

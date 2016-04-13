@@ -31,25 +31,12 @@
 	<script src="Ball.js"></script>
 	<script src="AnimatedObject.js"></script>
 	<script src="Tank.js"></script>
-	<script src="Game.js"></script>
     <script src="Engine.js"></script>
+	<script src="Game.js"></script>
+    
 	<script>
-		$("body").ready(function () {
-			var canvas = $("canvas")[0];
-			image = new Image();
-			image.src = 'images/sprites/teste.gif';
-			image.onload = function () {
-				var animated = new AnimatedObject();
-				var ctx = canvas.getContext("2d");
-                animated.changeAnimation(1);
-                animated.draw(ctx);
-				setInterval(function () {
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					animated.changeFrame();
-					animated.draw(ctx);
-				}, 100);
-			};
-			new Game();
+		$("document").ready(function () {
+			new Game($("canvas")[0]);
 		});
 	</script>
 
