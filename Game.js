@@ -9,21 +9,24 @@
 	var Game = function (canvas) {
 		var Game = {
 			player: new Tank(),
+			engine: {},
 			initialize: function () {
+				image = new Image();
+				image.src = 'images/sprites/teste.gif';
+				image.onload = function () {
+					var animated = new AnimatedObject();
+					animated.changeAnimation(1);
+				};
+
+				this.player.spriteImg = image;
+				this.engine = new Engine(canvas);
+				this.engine.addAnimatedObject(this.player);
+				this.engine.start(16.6);
 				this.listemKeys();
-                image = new Image();
-                image.src = 'images/sprites/teste.gif';
-                image.onload = function () {
-                    var animated = new AnimatedObject();
-                    animated.changeAnimation(1);
-                };
-                this.player.spriteImg = image;
-                var engine = new Engine(canvas);
-                engine.addAnimatedObject(this.player);
-                engine.start(16.6);
 			},
 			listemKeys: function () {
 				var player = this.player;
+				var engine = this.engine;
 				var timeWhenPressed;
 				var alreadyShooted = false;
 
@@ -64,8 +67,9 @@
 					case KEYS.SPACE:
 						if (!alreadyShooted) {
 							var spacePower = Math.pow((new Date().getTime() - timeWhenPressed) / 250, 3);
-							console.info(spacePower);
-							player.shoot(spacePower);
+							var a = new Ball();
+							engine.addAnimatedObject(a);
+							a.launch(45, spacePower);
 							timeWhenPressed = undefined;
 						}
 						alreadyShooted = false;

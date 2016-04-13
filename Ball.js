@@ -55,7 +55,6 @@
 					}
 					console.info(calcAngle.apply(ball));
 					ball.angle = toRadians(calcAngle.apply(ball));
-					ball.draw(ctx);
 				}, deltaT);
 			}
 		};

@@ -1,20 +1,18 @@
 (function ($) {
 	var Tank = function () {
 		var Tank = {
-			angle: 45,
+			cannonAngle: 45,
 			initialize: function () {
-				return $.extend(new AnimatedObject(),this);
+				return $.extend(new AnimatedObject(), this);
 			},
 			toCannonUp: function () {
-				this.angle++;
-				console.info(this.angle);
+				this.cannonAngle++;
 			},
 			toCannonDown: function () {
-				this.angle--;
-				console.info(this.angle);
+				this.cannonAngle--;
 			},
 			shoot: function (velocity) {
-				new Ball().launch(this.angle, velocity);
+				new Ball().launch(this.cannonAngle, velocity);
 			}
 		}
 		return Tank.initialize();
