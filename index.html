@@ -42,7 +42,7 @@
 				var ctx = canvas.getContext("2d");
 				setInterval(function () {
 					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					animated.frameChange();
+					animated.changeFrame();
 					animated.draw(ctx);
 				}, 100);
 			};

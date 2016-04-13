@@ -47,7 +47,6 @@
 						}
 						break;
 					}
-					//	e.preventDefault(); // prevent the default action (scroll / move caret)
 				});
 
 				$(document).on('keyup', function (e) {
