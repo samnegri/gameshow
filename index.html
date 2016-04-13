@@ -29,23 +29,24 @@
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 	<script src="Ball.js"></script>
-	<script src="calc.js"></script>
+	<script src="Tank.js"></script>
 	<script src="AnimatedObject.js"></script>
+	<script src="Game.js"></script>
 	<script>
 		$("body").ready(function () {
-            var canvas = $("canvas")[0];
-            image = new Image();
+			var canvas = $("canvas")[0];
+			image = new Image();
 			image.src = 'images/sprites/teste.gif';
 			image.onload = function () {
 				var animated = new AnimatedObject();
-                var ctx = canvas.getContext("2d");
-                setInterval(function(){
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    animated.frameChange();
-                    animated.draw(ctx);
-                },100);
+				var ctx = canvas.getContext("2d");
+				setInterval(function () {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					animated.changeFrame();
+					animated.draw(ctx);
+				}, 100);
 			};
-
+			new Game();
 		});
 	</script>
 

@@ -18,11 +18,13 @@
 				ctx.drawImage(image, this.spriteX, this.spriteY, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
 			},
             
-            frameChange: function() {
+            changeFrame: function() {
                 this.frameNumber++;
                 this.spriteX = this.spriteWidth * (this.frameNumber % this.numberOfFrames);
+            },
+            
+            changeAnimation: function() {
             }
-
 		}
 		return animatedObject;
 	};
