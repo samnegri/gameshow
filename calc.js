@@ -64,7 +64,7 @@ function sin(angle) {
 };
 
 function cos(angle) {
-	return Math.sin(toRadians(angle));
+	return Math.cos(toRadians(angle));
 };
 
 function toRadians(angle) {
@@ -75,7 +75,6 @@ $('.launch').click(function () {
 	var a = Ball.initialize();
 	a.angle = $('.angle').val();
 	a.velocity = $('.velocity').val();
-	console.info(a.angle);
-	console.info(a.velocity);
+	console.info('angle: ', a.angle, '   velocity: ', a.velocity);
 	a.launch();
 });
