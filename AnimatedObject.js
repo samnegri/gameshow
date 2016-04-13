@@ -4,7 +4,7 @@
 			spriteImg: image,
             spriteX: 0,
             spriteY: 67,
-            spriteWidth: 53,
+            spriteWidth: 45,
             spriteHeight:67,
             x: 100,
             y: 100,
@@ -15,14 +15,12 @@
             
 
 			draw: function (ctx) {
-                var bla = this.spriteWidth * (this.frameNumber % this.numberOfFrames);
-                console.info(bla);
-				ctx.drawImage(image, bla, this.spriteY, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+				ctx.drawImage(image, this.spriteX, this.spriteY, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
 			},
             
             frameChange: function() {
-                console.info(this.frameNumber);
                 this.frameNumber++;
+                this.spriteX = this.spriteWidth * (this.frameNumber % this.numberOfFrames);
             }
 
 		}
