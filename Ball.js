@@ -4,20 +4,22 @@
 	var gravity = 10;
 	var Ball = function () {
 		var ball = {
-			container: $('.bolinha'),
-			x: 0,
+			spriteImg: function () {
+				var image = new Image();
+				image.src = 'images/sprites/bomb.png';
+				return image;
+			}(),
+			spriteX: 0,
+			spriteY: 0,
+			spriteWidth: 30,
+			spriteHeight: 79,
+			x: 1,
 			y: 0,
-			setPosition: function (x, y) {
-				this.x = x;
-				this.y = y;
-				this.updatePosition();
-			},
-			updatePosition: function () {
-				this.container.css('bottom', this.y + 'px');
-				this.container.css('left', this.x + 'px');
-			},
-			clearBall: function () {
-				this.container.remove();
+			width: 30,
+			height: 79,
+			numberOfFrames: 1,
+			initialize: function () {
+				return $.extend(new AnimatedObject(), this);
 			},
 			launch: function (angle, velocity) {
 				var velocityX = velocity * cos(angle);
@@ -27,35 +29,38 @@
 				var timepast = 0;
 				var shouldGoUp = true;
 				var maxY = (velocityY * velocityY) / (2 * gravity);
+				var initialAngle = angle + 90;
+				var maxAngle = 90 - (initialAngle - 90);
+
+				console.info('initial', angle, initialAngle, maxAngle);
+				var flyingTime = Math.sqrt(maxY * 2 / gravity) * 2;
+				var totalX = flyingTime * velocityX;
 				var calcX = function () {
 					return initialX + velocityX * timepast;
 				};
 				var calcY = function () {
 					return initialY + velocityY * timepast - gravity * timepast * timepast / 2;
 				};
+				var calcAngle = function () {
+					console.info("(" + totalX + " * " + maxAngle + " / " + this.x + ")");
+					return (totalX * maxAngle / this.x) % 360;
+				};
 
 				var ball = this;
 				var launchInterval = setInterval(function () {
-					var newX = calcX.apply(ball),
-						newY = calcY.apply(ball);
-					ball.setPosition(newX, newY);
+					ball.x = calcX();
+					ball.y = calcY();
 					timepast += deltaT / 100;
-
 					if (ball.y < 0) {
-						ball.clearBall();
 						clearInterval(launchInterval);
 					}
+					console.info(calcAngle.apply(ball));
+					ball.angle = toRadians(calcAngle.apply(ball));
+					ball.draw(ctx);
 				}, deltaT);
 			}
 		};
-
-		var id = Math.floor(Math.random() * 10000000);
-		ball.container = $('<div class="bolinha" id="' + id + '"></div>');
-		$('body').append(ball.container);
-		ball.setPosition(0, 0);
-
-		return ball;
-
+		return ball.initialize();
 	};
 
 	function sin(angle) {
