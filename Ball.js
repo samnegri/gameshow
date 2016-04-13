@@ -30,9 +30,8 @@
 				var shouldGoUp = true;
 				var maxY = (velocityY * velocityY) / (2 * gravity);
 				var initialAngle = angle + 90;
-				var maxAngle = 90 - (initialAngle - 90);
+				var maxDifference = (initialAngle - 90) * 2;
 
-				console.info('initial', angle, initialAngle, maxAngle);
 				var flyingTime = Math.sqrt(maxY * 2 / gravity) * 2;
 				var totalX = flyingTime * velocityX;
 				var calcX = function () {
@@ -42,8 +41,8 @@
 					return initialY + velocityY * timepast - gravity * timepast * timepast / 2;
 				};
 				var calcAngle = function () {
-					console.info("(" + totalX + " * " + maxAngle + " / " + this.x + ")");
-					return (totalX * maxAngle / this.x) % 360;
+					console.info((this.x * maxDifference / totalX));
+					return 270 - (((this.x * maxDifference / totalX) + initialAngle));
 				};
 
 				var ball = this;
