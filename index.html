@@ -10,7 +10,7 @@
 		}
         canvas {
             width: 1000px;
-            height: 1000px;
+            height: 600px;
             display: block;
         }
         input[type="range"] {
@@ -26,7 +26,17 @@
 		<div class="bolinha"></div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 		<script src="calc.js"></script>
-		
+        <script src="AnimatedObject.js"></script>
+        <script>
+            $("body").ready(function(){
+                image = new Image();
+                image.src = 'images/sprites/teste.gif';
+                image.onload = function(){
+                    new AnimatedObject().draw($("canvas")[0].getContext("2d"));
+                };
+                
+            });
+        </script>
 	</body>
 
 </html>
