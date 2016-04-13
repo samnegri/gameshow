@@ -1,4 +1,5 @@
 <html>
+
 <head>
 	<style>
 		.bolinha {
@@ -19,24 +20,28 @@
         
 	</style>
 </head>
-	<body>
-        <canvas></canvas>
-		<input type="range" class="forca"/>
-		<input type="range" class="angulo"/>
-		<div class="bolinha"></div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-		<script src="calc.js"></script>
-        <script src="AnimatedObject.js"></script>
-        <script>
-            $("body").ready(function(){
-                image = new Image();
-                image.src = 'images/sprites/teste.gif';
-                image.onload = function(){
-                    new AnimatedObject().draw($("canvas")[0].getContext("2d"));
-                };
-                
-            });
-        </script>
-	</body>
+
+<body>
+	<canvas></canvas>
+	<div style="position: absolute;top: 0;">
+		<input type="range" class="velocity" max="150" min="0" />
+		<input type="range" class="angle" max="90" min="10" />
+		<button type="button" class="launch">LAUNCH!</button>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script src="calc.js"></script>
+    <script src="AnimatedObject.js"></script>
+    <script>
+        $("body").ready(function(){
+            image = new Image();
+            image.src = 'images/sprites/teste.gif';
+            image.onload = function(){
+                new AnimatedObject().draw($("canvas")[0].getContext("2d"));
+            };
+
+        });
+    </script>
+
+</body>
 
 </html>
