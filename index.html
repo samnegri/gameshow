@@ -33,10 +33,17 @@
 	<script src="AnimatedObject.js"></script>
 	<script>
 		$("body").ready(function () {
-			image = new Image();
+            var canvas = $("canvas");
+            image = new Image();
 			image.src = 'images/sprites/teste.gif';
 			image.onload = function () {
-				new AnimatedObject().draw($("canvas")[0].getContext("2d"));
+				var animated = new AnimatedObject();
+                var ctx = canvas[0].getContext("2d");
+                setInterval(function(){
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    animated.frameChange();
+                    animated.draw(ctx);
+                },100);
 			};
 
 		});
