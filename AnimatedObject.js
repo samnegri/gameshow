@@ -11,8 +11,8 @@
 			width: 45,
 			height: 67,
 			frameNumber: 0,
-			angle: 0,
 			numberOfFrames: 5,
+			angle: 0,
 
 			initialize: function () {
 				return this;

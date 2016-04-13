@@ -6,11 +6,21 @@
 		DOWN: 40,
 		SPACE: 32
 	};
-	var Game = function () {
+	var Game = function (canvas) {
 		var Game = {
 			player: new Tank(),
 			initialize: function () {
 				this.listemKeys();
+                image = new Image();
+                image.src = 'images/sprites/teste.gif';
+                image.onload = function () {
+                    var animated = new AnimatedObject();
+                    animated.changeAnimation(1);
+                };
+                this.player.spriteImg = image;
+                var engine = new Engine(canvas);
+                engine.addAnimatedObject(this.player);
+                engine.start(16.6);
 			},
 			listemKeys: function () {
 				var player = this.player;
