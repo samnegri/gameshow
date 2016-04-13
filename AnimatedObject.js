@@ -8,13 +8,14 @@
             spriteHeight:67,
             x: 100,
             y: 100,
-            width: 53,
+            width: 45,
             height: 67,
             frameNumber: 0,
-            numberOfFrames:5 ,
+            numberOfFrames:5,
             
 
 			draw: function (ctx) {
+                console.info(this.spriteX);
 				ctx.drawImage(image, this.spriteX, this.spriteY, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
 			},
             
@@ -23,7 +24,8 @@
                 this.spriteX = this.spriteWidth * (this.frameNumber % this.numberOfFrames);
             },
             
-            changeAnimation: function() {
+            changeAnimation: function(index) {
+                this.spriteY = index * this.spriteHeight;
             }
 		}
 		return animatedObject;
