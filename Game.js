@@ -14,9 +14,8 @@
 			},
 			listemKeys: function () {
 				var player = this.player;
-				var spacePower = 0;
-				var velocity = 0;
-				var aceleration = 0.1;
+				var timeWhenPressed;
+				var alreadyShooted = false;
 
 				$(document).on('keydown', function (e) {
 					switch (e.which) {
@@ -33,20 +32,33 @@
 						player.toCannonDown();
 						break;
 					case KEYS.SPACE:
-						spacePower += velocity;
-						velocity += aceleration;
-						console.info(spacePower);
+						if (!alreadyShooted) {
+							if (!timeWhenPressed) {
+								timeWhenPressed = new Date().getTime();
+							}
+							var spacePower = Math.pow((new Date().getTime() - timeWhenPressed) / 250, 3);
+							if (spacePower > 120) {
+								spacePower = 120;
+								console.info(spacePower);
+								player.shoot(spacePower);
+								timeWhenPressed = undefined;
+								alreadyShooted = true;
+							}
+						}
 						break;
 					}
-					//e.preventDefault(); // prevent the default action (scroll / move caret)
 				});
 
 				$(document).on('keyup', function (e) {
 					switch (e.which) {
 					case KEYS.SPACE:
-						console.info(spacePower);
-						player.shoot(spacePower);
-						spacePower = 0;
+						if (!alreadyShooted) {
+							var spacePower = Math.pow((new Date().getTime() - timeWhenPressed) / 250, 3);
+							console.info(spacePower);
+							player.shoot(spacePower);
+							timeWhenPressed = undefined;
+						}
+						alreadyShooted = false;
 						break;
 					}
 					e.preventDefault(); // prevent the default action (scroll / move caret)
