@@ -3,7 +3,7 @@
 		var Tank = {
 			angle: 45,
 			initialize: function () {
-				return this;
+				return $.extend(new AnimatedObject(),this);
 			},
 			toCannonUp: function () {
 				this.angle++;

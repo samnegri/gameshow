@@ -13,7 +13,10 @@
             frameNumber: 0,
             numberOfFrames:5,
             
-
+            initialize: function() {
+                return this;
+            },
+            
 			draw: function (ctx) {
 				ctx.drawImage(image, this.spriteX, this.spriteY, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
 			},
